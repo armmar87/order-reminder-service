@@ -27,4 +27,9 @@ class Order extends Model
     {
         return $this->hasMany(Reminder::class);
     }
+
+    public function intervals()
+    {
+        return $this->belongsToMany(NotificationInterval::class);
+    }
 }

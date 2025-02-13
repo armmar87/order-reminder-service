@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('business');
             $table->enum('type', [OrderType::TYPE_X->value, OrderType::TYPE_Y->value]);
+            $table->boolean('is_replaced')->default(false);
             $table->date('application_date');
             $table->date('expiration_date');
             $table->timestamps();
