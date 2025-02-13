@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('type', [OrderType::TYPE_X->value, OrderType::TYPE_Y->value]);
             $table->date('application_date');
             $table->date('expiration_date');
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

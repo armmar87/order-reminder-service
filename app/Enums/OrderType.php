@@ -2,6 +2,6 @@
 
 namespace App\Enums;
 enum OrderType: string {
-    case X = 'x';
-    case Y = 'y';
+    case TYPE_X = 'type_x';
+    case TYPE_Y = 'type_y';
 }
