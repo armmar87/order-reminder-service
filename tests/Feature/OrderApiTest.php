@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\OrderType;
+use App\Models\NotificationInterval;
 use App\Models\Order;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
@@ -21,8 +22,20 @@ class OrderApiTest extends TestCase
             'business' => 'business 1',
         ]);
 
-        dd($response->getStatusCode());
         $response->assertStatus(Response::HTTP_OK);
         $this->assertDatabaseHas('orders', ['order_type' => OrderType::TYPE_X]);
+    }
+
+    public function test_update_intervals()
+    {
+        $this->postJson('/api/intervals', [
+            'intervals' => [
+                ['type' => 'pre', 'days' => 10],
+                ['type' => 'pre', 'days' => 5],
+                ['type' => 'post', 'days' => 2]
+            ]
+        ]);
+
+        $this->assertCount(3, NotificationInterval::all());
     }
 }
